@@ -6,9 +6,13 @@ const config: PostgresConnectionOptions = {
     port: 5432,
     username: "postgres",
     password: "postgres",
-    database: "predator",
-    entities: ['dist/src/**/*.entities.js'], // To get all the sata that has database schema's matching the regex
-    synchronize: true
+    database: "postgres",
+    "entities": ["dist/**/*.entity{ .ts,.js}"], // To get all the sata that has database schema's matching the regex
+    synchronize: false,
+    migrations: [
+        'dist/db/migrations/*.js'
+    ],
+
 }
 
 export default config;
