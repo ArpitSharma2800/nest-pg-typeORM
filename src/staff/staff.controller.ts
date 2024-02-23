@@ -3,6 +3,7 @@ import { StaffService } from './staff.service';
 import { CreateStaffDto } from './dto/create-staff.dto';
 import { UpdateStaffDto } from './dto/update-staff.dto';
 import { CreateStaffDocDto } from './dto/create-staff-doc.dto/create-staff-doc.dto';
+import { CreateStaffNurseDto } from './dto/create-staff-nurse.dto/create-staff-nurse.dto';
 
 @Controller('staff')
 export class StaffController {
@@ -11,6 +12,11 @@ export class StaffController {
   @Post('createDoc')
   createDoc(@Body() createStaffDocDto: CreateStaffDocDto) {
     return this.staffService.createDoctor(createStaffDocDto);
+  }
+
+  @Post('createNurse')
+  createNurse(@Body() createStaffNurseDto: CreateStaffNurseDto) {
+    return this.staffService.createNurse(createStaffNurseDto);
   }
 
   @Post()
@@ -23,9 +29,14 @@ export class StaffController {
     return this.staffService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.staffService.findOne(+id);
+  @Get('/doc/:id')
+  findOneDoc(@Param('id') id: string) {
+    return this.staffService.findOneDoc(+id);
+  }
+
+  @Get('/nurse/:id')
+  findOneNurse(@Param('id') id: string) {
+    return this.staffService.findOneNurse(+id);
   }
 
   @Patch(':id')
